@@ -33,14 +33,14 @@ exports.registerEmployee = async (req, res) => {
       });
     }
 
-    if (req.employerId || req.body.employerId) {
+    if (req.employerId || req.body.employerId || "65d82b116676f942fa8e8eef") {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Creating new employee
       const employee = new Employee({
         fullname,
         phone_number,
-        employer_id: req.employerId || req.body.employerId,
+        employer_id: req.employerId || req.body.employerId || "65d82b116676f942fa8e8eef",
         password: hashedPassword,
       });
 
