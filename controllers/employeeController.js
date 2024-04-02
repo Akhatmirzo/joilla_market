@@ -46,6 +46,14 @@ exports.registerEmployee = async (req, res) => {
 
       await employee.save();
 
+      const token = jwt.sign(
+          {
+            phone_number,
+            role: "employee",
+          },
+          process.env.jwt_secret_key
+        );
+
       return res.status(201).send({
         message: "Employee created successfully",
         employee,
